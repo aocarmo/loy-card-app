@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fechar</button>
+    </ion-buttons>
+    <ion-title>Carimbo - QrCode</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngIf="qrcode">
+   
+    <ion-card-content>
+      <img [src]="qrcode" alt="">
+    
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button color="danger" full (click)="dismiss()">Fechar</button>
+
+</ion-content>

@@ -1,0 +1,88 @@
+<!-- -->
+<ion-header>
+  <ion-navbar class="nav-transparent" color="dark">
+    <ion-title>{{ oferta.nome_estabelecimento }}</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content class="common-bg">
+  <!--slides-->
+  <ion-slides class="to-top" pager>
+    <ion-slide *ngFor="let image of oferta.imagens_oferta">
+      <img src="{{ image }}" alt="">
+    </ion-slide>
+  </ion-slides>
+
+  <!--price info-->
+  <div class="price-info">
+    <ion-badge class="square badge-left" color="danger">
+      {{ oferta.titulo_oferta }}
+    </ion-badge>
+    <ion-badge *ngIf="oferta.percentual_desconto_oferta" class="square badge-right green-bg text-white">{{ oferta.percentual_desconto_oferta }}%
+    </ion-badge>
+
+    <div class="pull-left">
+      <span class="price text-white" *ngIf="!oferta.valor_final_oferta" ion-text>R$ {{ oferta.valor_oferta }}</span>
+      <span class="sale-price bold text-white" *ngIf="oferta.valor_final_oferta" ion-text>R$ {{ oferta.valor_final_oferta }}</span>
+      <span ion-text class="text-white"></span>
+      <span class="origin-price" *ngIf="oferta.valor_final_oferta" ion-text color="light">R$ {{ oferta.valor_oferta }}</span>
+    </div>
+    <div class="pull-right">
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!--rating info-->
+  <div class="border-bottom dark-bg" padding>
+    <div class="pull-left">
+      <span ion-text class="text-white">{{ oferta.descricao_oferta }}</span>
+    </div>
+
+    <div class="clear"></div>
+  </div>
+
+  <!-- Show map here -->
+  <div id="map-detail" class="google-map"></div>
+
+  <!--services-->
+  <ion-grid class="border-bottom detail-bg">
+    <ion-row>
+      <ion-col text-center>
+        <h5 ion-text color="primary">Mais ofertas de {{oferta.nome_estabelecimento }}</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="list-promocoes common-bg" no-padding>
+    <ion-row no-padding>
+      <ion-col col-6 col-lg-3 *ngFor="let oferta of maisOfertas" col-6 col-md-3 tappable (click)="verPromocaoDetalhe(oferta)">
+        <div class="promocao-bg" [ngStyle]="{'background-image': 'url(' + oferta.img_thumb_oferta + ')'}">
+          <div class="bg-filter">
+            <div class="discount" *ngIf="oferta.percentual_desconto_oferta">-{{oferta.percentual_desconto_oferta}}%
+            </div>
+            <div class="bottom-info">
+
+              <div>
+                <div class="pull-left">
+                  <h5 ion-text class="text-white">{{oferta.nome_estabelecimento}}</h5>
+                </div>                
+                <div class="clear"></div>
+              </div>
+
+              <div>
+                <div class="pull-right">
+                  <span class="origin-price hide-lg" *ngIf="oferta.valor_final_oferta">R$ {{ oferta.valor_oferta }}</span>
+                  <span class="price text-white" *ngIf="!oferta.valor_final_oferta" ion-text>R$ {{ oferta.valor_oferta}}</span>
+                  <span class="sale-price" *ngIf="oferta.valor_final_oferta" ion-text class="text-white">R$ {{ oferta.valor_final_oferta}}</span>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

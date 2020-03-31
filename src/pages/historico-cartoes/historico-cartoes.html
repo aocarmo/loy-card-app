@@ -1,0 +1,51 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Histórico de Cartões</ion-title>
+    <ion-buttons end>    
+       <button ion-button tappable (click)="doScanQrCodeApp()">
+         <ion-icon class="fa-qrcode"></ion-icon>
+       </button>
+     </ion-buttons>
+  </ion-navbar>
+
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <p ion-text no-margin class="text-white">
+      <strong>{{ cartoesInativos.length }}</strong> Cartões em inativo(s)!
+    </p>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="cartoes common-bg">
+  <ion-grid>
+    <ion-row>
+      <!--list of cartaos-->
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-4 padding *ngFor="let cartao of cartoesInativos" (press)="removerCartao($event,cartao.idCartao)"  (tap)="viewDetail(cartao.cartao)">
+        <div class="cartao card">
+          <div class="background border-bottom" [ngStyle]="{'background-image': 'url(' + cartao.fotoEstabelecimentoGrande + ')'}">
+            <div class="background-filter rlt">
+              <div class="align-bottom" padding-left padding-right>
+                <h6 class="pull-left text-white" ion-text>{{ cartao.nomeEstabelecimento }}</h6>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>     
+          <div *ngIf="cartao.situacaoCartao =='Resgatado'" class="padding-sm primary-bg">
+            <ion-icon name="time" class="text-white"></ion-icon>
+            <span ion-text class="text-white"> <strong>Cartão Resgatado</strong></span>           
+          </div>
+          <div *ngIf="cartao.situacaoCartao =='Inativo'" class="padding-sm danger-bg">
+            <ion-icon name="time" class="text-white"></ion-icon>
+            <span ion-text class="text-white"> <strong>Cartão Inativo</strong></span>           
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

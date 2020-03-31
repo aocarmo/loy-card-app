@@ -1,0 +1,82 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+
+  
+
+    <!-- Register form -->
+    <form [formGroup]="onRegisterForm" class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-white"></ion-icon>
+          Nome
+        </ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+      </ion-item>
+      <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('nome').touched && onRegisterForm.get('nome').hasError('required')">Favor preencher este campo</p>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-white"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">Favor preencher este campo</p>
+
+      <ion-item>
+          <ion-label floating>
+            <ion-icon name="call" item-start class="text-white"></ion-icon>
+            Telefone
+          </ion-label>
+          <ion-input type="tel" formControlName="telefone"  [brmasker]="{phone: true}"></ion-input>
+        </ion-item>
+        <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('telefone').touched && onRegisterForm.get('telefone').hasError('required')">Favor preencher este campo</p>
+
+        <ion-item>
+            <ion-label floating>
+              <ion-icon name="lock" item-start class="text-white"></ion-icon>
+              Senha
+            </ion-label>
+            <ion-input type="password" formControlName="senha"></ion-input>
+          </ion-item>
+          <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('senha').touched && onRegisterForm.get('senha').hasError('required')">Favor preencher este campo</p>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-white"></ion-icon>
+          Repetir Senha
+        </ion-label>
+        <ion-input type="password" formControlName="reSenha"></ion-input>
+      </ion-item>
+      <p ion-text color="danger" class="text-1x has-error" *ngIf="onRegisterForm.get('reSenha').touched && onRegisterForm.get('reSenha').hasError('required')">Favor preencher este campo</p>
+    </form>
+
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="register()" [disabled]="!onRegisterForm.valid">
+          REGISTRAR-SE
+      </button>
+
+      <p text-center ion-text color="light">Ou Acesse Com:</p>
+
+      <ion-grid class="btn-group">
+        <ion-row>
+          <button ion-button icon-only block class="btn-facebook col col-4" (click)="loginRedeSocial('facebook')">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+          <!--<button ion-button icon-only block class="btn-twitter col col-4">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </button>-->
+          <button ion-button icon-only block class="btn-gplus col col-4"  (click)="loginRedeSocial('google')">
+            <ion-icon name="logo-googleplus"></ion-icon>
+          </button>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="light" tappable (click)="login()">Já tenho uma conta</span>
+    </div>
+
+  </div>
+</ion-content>

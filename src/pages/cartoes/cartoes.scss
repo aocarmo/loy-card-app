@@ -1,0 +1,92 @@
+page-cartoes,
+.cartoes {
+
+  .cartao {
+    border-radius: 1rem;
+    overflow: hidden;
+
+    .background {
+      background-size: 100% auto;
+      background-position: center;
+
+      .background-filter {
+        height: 16rem;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
+
+        .align-bottom {
+          width: 100%;
+
+          h6 {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ios, .md {
+    
+  page-cartoes{
+
+      /*
+       *  Flip animation by David Walsh: https://davidwalsh.name/css-flip
+       */
+
+      /* entire container, keeps perspective */
+      .flip-container {
+          perspective: 1000px;
+      }
+
+          /* flip the pane when hovered */
+          .flip-container.flipped .flipper {
+              transform: rotateY(180deg);
+          }
+
+      .flip-container, .front, .back {
+          width: 90vw;
+         height: 40vh;
+          margin: 20px auto;
+      }
+
+      /* flip speed goes here */
+      .flipper {
+          transition: 0.6s;
+          transform-style: preserve-3d;
+
+          position: relative;
+      }
+
+      /* hide back of pane during swap */
+      .front, .back {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #ecf0f1;
+          backface-visibility: hidden;
+          -webkit-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+          -moz-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+          box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+          border: 1px solid #dee2e3;
+          margin: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+      }
+
+      /* front pane, placed above back */
+      .front {
+          z-index: 2;
+          /* for firefox 31 */
+          transform: rotateY(0deg);
+      }
+
+      /* back, initially hidden pane */
+      .back {
+          transform: rotateY(180deg);
+      }
+
+  }
+
+}
+  

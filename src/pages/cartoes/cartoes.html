@@ -1,0 +1,70 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Meus Cartões</ion-title>
+    <ion-buttons end>    
+       <button ion-button tappable (click)="doScanQrCodeApp()">
+         <ion-icon class="fa-qrcode"></ion-icon>
+       </button>
+     </ion-buttons>
+  </ion-navbar>
+
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <p ion-text no-margin class="text-white">
+      <strong>{{ cartoes.length }}</strong> Cartões Ativo(s)!
+    </p>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="cartoes common-bg">
+  <ion-grid>
+    <ion-row>
+      <!--list of cartaos-->
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-4 padding *ngFor="let cartao of cartoes" (press)="removerCartao($event,cartao.idCartao)"  (tap)="viewDetail(cartao)">
+        <div class="cartao card">
+          <div class="background border-bottom" [ngStyle]="{'background-image': 'url(' + cartao.fotoEstabelecimento + ')'}">
+            <div class="background-filter rlt">
+              <div class="align-bottom" padding-left padding-right>
+                <h6 class="pull-left text-white" ion-text>{{ cartao.nomeEstabelecimento }}</h6>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!cartao.cartaoFechado" class="padding-sm primary-bg">
+            <ion-icon name="time" class="text-white"></ion-icon>
+            <span ion-text class="text-white"> <strong>Válido até: </strong></span>
+            <span class="pull-right" ion-text color="light">{{ cartao.dataValidade }}</span>
+          </div>
+          <div *ngIf="cartao.cartaoFechado" class="padding-sm green-bg">
+            <ion-icon name="time" class="text-white"></ion-icon>
+            <span ion-text class="text-white"> <strong>Disponível para resgate até: </strong></span>
+            <span class="pull-right" ion-text color="light">{{ cartao.dataValidade }}</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<!--
+  <div *ngFor="let cartao of cartoes" class="flip-container" (click)="flip()" [class.flipped]="flipped">
+
+    <div class="flipper">
+
+      <div class="front">
+        <ng-content select=".flash-card-front"></ng-content>
+
+      </div>
+
+      <div class="back">
+        <ng-content select=".flash-card-back"></ng-content>
+      </div>
+
+    </div>
+
+  </div>-->
+</ion-content>

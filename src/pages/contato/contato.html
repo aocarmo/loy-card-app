@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            <span ion-text>Contato</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="common-bg">
+
+    <div class="support-header">
+        <img src="assets/img/support-app.jpg">
+    </div>
+
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col col-12 margin-bottom>
+                <ion-card class="full-width" no-margin>
+
+                    <ion-list>
+                        <a href="tel:{{contato.telefone}}" ion-item>
+                            <ion-icon name="call" item-start></ion-icon>
+                            <p ion-text color="primary">Ligar para LoyCard</p>
+                            <h2 ion-text color="dark">{{contato.telefone}}</h2>
+                        </a>
+                        <a href="mailto:{{contato.email}}" ion-item>
+                            <ion-icon name="mail" item-start></ion-icon>
+                            <p ion-text color="primary">Email</p>
+                            <h2 ion-text color="dark">{{contato.email}}</h2>
+                        </a>
+                    </ion-list>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+
+        <ion-row style="height:30px;vertical-align: text-top;" class="primary-bg">
+            <ion-col align="center">
+                <span  style="vertical-align: text-top;font-size: 15px;" class="text-white">Fale Conosco</span>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+
+            <ion-col col-12 margin-bottom padding>
+                <form [formGroup]="registrarContatoForm" class="list-form">
+                    <ion-item>
+                        <ion-label color="dark" >Assunto:</ion-label>
+                        <ion-input  type="text" placeholder="" formControlName="assunto"></ion-input>
+                    </ion-item>
+                    <p ion-text color="danger" class="text-1x has-error" *ngIf="registrarContatoForm.get('assunto').touched && registrarContatoForm.get('assunto').hasError('required')">Favor preencher este campo</p>
+
+                    <ion-item>
+                        <ion-label color="dark" >Mensagem:</ion-label>
+                        <ion-textarea placeholder="" formControlName="mensagem"></ion-textarea>
+                    </ion-item>
+                    <p ion-text color="danger" class="text-1x has-error" *ngIf="registrarContatoForm.get('mensagem').touched && registrarContatoForm.get('mensagem').hasError('required')">Favor preencher este campo</p>
+                </form>
+            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col col-12 margin-bottom padding align="center">
+                <button ion-button block  color="primary"  (click)="RegistrarContato()" [disabled]="!registrarContatoForm.valid">Enviar</button>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+
+
+</ion-content>

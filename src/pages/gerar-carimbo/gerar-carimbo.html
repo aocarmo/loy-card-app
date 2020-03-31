@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+          <span ion-text>Gerar Carimbo</span>
+      </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile common-bg">
+
+   <ion-card>
+     <ion-grid>
+          <ion-row>
+              <ion-col col-12 margin-bottom padding>
+                  <form [formGroup]="gerarCarimboForm" class="list-form">
+                      <ion-item>
+                          <ion-label color="dark" stacked>Nº da Nota Fiscal:</ion-label>
+                          <ion-input type="text" placeholder="" formControlName="nuNota"></ion-input>
+                      </ion-item>
+                      <p ion-text color="danger" class="text-1x has-error" *ngIf="gerarCarimboForm.get('nuNota').touched && gerarCarimboForm.get('nuNota').hasError('required')">Favor preencher este campo</p>
+
+                      <ion-item>
+                        <ion-label color="dark" stacked>Valor da Compra:</ion-label>
+                        <ion-input type="text" placeholder="Ex. 0,00" formControlName="vlCompra"></ion-input>
+                    </ion-item>
+                    <p ion-text color="danger" class="text-1x has-error" *ngIf="gerarCarimboForm.get('vlCompra').touched && gerarCarimboForm.get('vlCompra').hasError('required')">Favor preencher este campo</p>
+
+                      <ion-item>
+                          <ion-label color="dark" stacked>Data da Compra</ion-label>                      
+                          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="dataTual" formControlName="dtCompra"></ion-datetime>
+                      </ion-item>
+                      <p ion-text color="danger" class="text-1x has-error" *ngIf="gerarCarimboForm.get('dtCompra').touched && gerarCarimboForm.get('dtCompra').hasError('required')">Favor preencher este campo</p>
+
+                  </form>
+
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+
+      <button ion-button large full color="dark" (click)="gerarCarimbo()">Gerar Carimbo</button>
+  
+  </ion-card>
+
+  
+</ion-content>

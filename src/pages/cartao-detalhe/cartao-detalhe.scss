@@ -1,0 +1,77 @@
+page-cartao-detalhe,
+.trip-detail {
+
+  ul.highlight {
+    padding-left: 0;
+    font-size: 1.2rem;
+    list-style: none;
+
+    li {
+      margin-bottom: 1rem;
+    }
+  }
+
+  // change text-sm size
+  .text-sm {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  // booking form style
+  .booking-form {
+
+    ion-grid {
+
+      ion-row {
+
+        ion-col {
+          padding: 0;
+        }
+      }
+    }
+
+    .form-bottom {
+      display: flex;
+      align-items: center;
+
+      .pull-right {
+        margin-left: auto;
+      }
+
+      .pull-left{
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+.carimbo{
+  width: 60px;
+  height: 56px;
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10rem rgba(0,0,0,.25), 0 0 4rem rgba(255,255,255,.45);
+  //background: url("../assets/img/alex.jpg") no-repeat;
+  background-size: 100%;
+  border: dashed 2px #563d7c;
+}
+
+/*fix for ios
+@media (max-width: 476px) {
+  ion-content.content-ios{
+     ion-row[wrap] {
+         ion-col {
+            flex-basis: 100%;
+          }
+      }
+  }
+}
+@media (max-width: 768px) {
+ion-content.content-ios{
+   ion-row[wrap] {
+      ion-col {
+         flex-basis: 50%;
+      }
+    }
+  }
+}*/

@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            <span ion-text>Editar Perfil</span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="profile common-bg">
+
+    <ion-card>
+        <ion-card-content class="profile-bg">
+            <img [src]="user.foto">
+            <h2 class="fw500">{{user.nome}}</h2>
+            <h3 ion-text color="light">LoyCarder</h3>
+            <button ion-button icon-start margin-top color="secondary" (click)="alteraFoto()">
+                <ion-icon name="camera"></ion-icon>
+                Trocar Foto
+            </button>
+        </ion-card-content>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col col-12 margin-bottom padding>
+                    <form [formGroup]="registrarUsuarioForm" class="list-form">
+                        <ion-item>
+                            <ion-label color="dark" stacked>Nome:</ion-label>
+                            <ion-input type="text" placeholder="Ex..: João Silva" [value]="user.nome" formControlName="nome"></ion-input>
+                        </ion-item>
+                        <p ion-text color="danger" class="text-1x has-error" *ngIf="registrarUsuarioForm.get('nome').touched && registrarUsuarioForm.get('nome').hasError('required')">Favor preencher este campo</p>
+
+                        <ion-item>
+                            <ion-label color="dark" stacked>Email:</ion-label>
+                            <ion-input type="email" placeholder="Ex.: joao@gmail.com" [value]="user.email" disabled="true" formControlName="email"></ion-input>
+                        </ion-item>
+                        <p ion-text color="danger" class="text-1x has-error" *ngIf="registrarUsuarioForm.get('email').touched && registrarUsuarioForm.get('email').hasError('required')">Favor preencher este campo</p>
+
+                        <ion-item>
+                            <ion-label color="dark" stacked>Telefone:</ion-label>
+                            <ion-input type="tel" placeholder="(71) 99999-9999" [brmasker]="{phone: true}" [value]="user.telefone" formControlName="telefone"></ion-input>
+                        </ion-item>
+                        <p ion-text color="danger" class="text-1x has-error" *ngIf="registrarUsuarioForm.get('telefone').touched && registrarUsuarioForm.get('telefone').hasError('required')">Favor preencher este campo</p>
+
+                    </form>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button ion-button large full color="dark" (click)="alterarDadosUsuario()">Salvar</button>
+        <button ion-button large full clear color="danger" (click)="alterarSenha()">Alterar senha</button>
+    </ion-card>
+
+</ion-content>

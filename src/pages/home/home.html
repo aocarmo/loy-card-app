@@ -1,0 +1,117 @@
+<!-- -->
+<ion-header class="animated fadeIn no-shadow">
+
+  <ion-navbar class="no-border" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+    <!-- Logo -->
+    <strong>LoyCard</strong>
+    </ion-title>
+    <ion-buttons end>
+     <!-- <button ion-button tappable (click)="presentNotifications($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+      <button ion-button tappable (click)="goToAccount()">
+        <ion-icon name="cog"></ion-icon>
+      </button> -->
+      <button ion-button tappable (click)="doScanQrCodeApp()">
+        <ion-icon class="fa-qrcode"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="animated fadeIn common-bg">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    
+  <!--list menu on the top-->
+  <hr class="secondary-bg quarter-op" no-margin>
+  <ion-item-group class="home-widget">
+    <ion-item-divider color="primary">
+      <h2 ion-text class="bold text-white">
+        <ion-icon name="home"></ion-icon>
+        LoyCards próximos a você
+      </h2>
+      <ion-fab right middle>
+        <button  mini ion-fab><ion-icon  class="fa-share-alt"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button color="facebook" ion-fab (click)="compartilharApp('facebook')"><ion-icon name="logo-facebook"></ion-icon></button>
+          <button color="whatsapp" ion-fab (click)="compartilharApp('whatsapp')"><ion-icon name="logo-whatsapp"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
+    </ion-item-divider>
+    <ion-item>
+      <div id="home-map" class="google-map"></div>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item-group class="home-widget">
+    <ion-item-divider color="primary">
+      <h2 ion-text class="bold text-white">
+        <ion-icon name="pricetags"></ion-icon>
+        Promoções hoje
+      </h2>
+    </ion-item-divider>
+    <ion-item *ngIf="ofertasEstabelecimentos != ''">
+
+      <ion-grid class="list-promocoes common-bg" no-padding>
+        <ion-row no-padding>
+         <ion-col col-6 col-lg-3 *ngFor="let oferta of ofertasEstabelecimentos" col-6 col-md-3 tappable (click)="verPromocaoDetalhe(oferta)">
+            <div class="promocao-bg" [ngStyle]="{'background-image': 'url(' + oferta.img_thumb_oferta + ')'}">
+              <div class="bg-filter">
+                <div class="discount" *ngIf="oferta.percentual_desconto_oferta">-{{oferta.percentual_desconto_oferta}}%
+                </div>
+                <div class="bottom-info">
+
+                  <div>
+                    <div class="pull-left">
+                      <h5 ion-text class="text-white">{{oferta.nome_estabelecimento}}</h5>
+                    </div>
+                    <div class="pull-right">
+                      <span class="origin-price hide-sm"  *ngIf="oferta.valor_oferta">R$ {{ oferta.valor_oferta}}</span>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+
+                  <div>                  
+                   <div class="pull-right">
+                     <span class="origin-price hide-lg" *ngIf="oferta.valor_final_oferta">R$ {{ oferta.valor_oferta }}</span>
+                      <span class="price text-white" *ngIf="!oferta.valor_final_oferta" ion-text>R$ {{ oferta.valor_oferta}}</span>
+                      <span class="sale-price" *ngIf="oferta.valor_final_oferta" ion-text class="text-white">R$ {{ oferta.valor_final_oferta}}</span>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>  
+  </ion-item-group>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+       
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <div align="center" style="vertical-align: 50%; height: 100%;" *ngIf="ofertasEstabelecimentos == ''">
+              <span style="vertical-align: 50%; height: 100%;font-size: 15px;">Não há promoções próximas a você... :(</span>
+            </div>       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

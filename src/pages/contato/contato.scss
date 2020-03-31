@@ -1,0 +1,33 @@
+.support-header {
+  width: 100%;
+  min-height: 100px;
+  text-align: center;
+	p {
+	  color: color($colors, primary);
+	}
+	ion-icon {
+	  color: color($colors, primary);
+	  width: 20px;
+	}
+}
+
+.md,
+.wp {
+  .support-info [text-right] {
+    margin-right: 0;
+  }
+}
+
+.ios .support-info ion-icon {
+  width: auto;
+  margin-right: 10px;
+}
+
+textarea.text-input {
+  display: block;
+  height: 50px;
+}
+
+.item.item-input {
+  background-color: transparent;
+}
