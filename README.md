@@ -2,7 +2,7 @@
 Loycard is an application focused on retaining restaurant customers.
 
 ### Screenshot
-<img src="/resources/login.PNG" alt="alt text" height="400px">
+<img src="/resources/login.png" alt="alt text" height="400px">
 
 
 
